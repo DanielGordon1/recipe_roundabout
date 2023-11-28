@@ -76,8 +76,13 @@ GEM
       tzinfo (~> 2.0)
     addressable (2.8.5)
       public_suffix (>= 2.0.2, < 6.0)
+    ast (2.4.2)
     autoprefixer-rails (10.4.16.0)
       execjs (~> 2)
+    babel-source (5.8.35)
+    babel-transpiler (0.7.0)
+      babel-source (>= 4.0, < 6)
+      execjs (~> 2.0)
     bcrypt (3.1.20)
     bindex (0.8.1)
     bootsnap (1.17.0)
@@ -85,6 +90,7 @@ GEM
     bootstrap (5.3.2)
       autoprefixer-rails (>= 9.1.0)
       popper_js (>= 2.11.8, < 3)
+    brow (0.4.1)
     builder (3.2.4)
     capybara (3.39.2)
       addressable
@@ -96,6 +102,7 @@ GEM
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
     concurrent-ruby (1.2.2)
+    connection_pool (2.4.1)
     crass (1.0.6)
     date (3.3.4)
     debug (1.8.0)
@@ -114,6 +121,12 @@ GEM
     erubi (1.12.0)
     execjs (2.9.1)
     ffi (1.16.3)
+    flipper (1.0.0)
+      brow (~> 0.4.1)
+      concurrent-ruby (< 2)
+    flipper-active_record (1.0.0)
+      activerecord (>= 4.2, < 8)
+      flipper (~> 1.0.0)
     font-awesome-sass (6.4.2)
       sassc (~> 2.0)
     globalid (1.2.1)
@@ -131,6 +144,8 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
+    json (2.6.3)
+    language_server-protocol (3.17.0.3)
     loofah (2.22.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -160,7 +175,14 @@ GEM
     nokogiri (1.15.5-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
+    parallel (1.23.0)
+    parser (3.2.2.4)
+      ast (~> 2.4.1)
+      racc
     pg (1.5.4)
+    pg_search (2.3.6)
+      activerecord (>= 5.2)
+      activesupport (>= 5.2)
     popper_js (2.11.8)
     psych (5.1.1.1)
       stringio
@@ -199,9 +221,16 @@ GEM
       rake (>= 12.2)
       thor (~> 1.0)
       zeitwerk (~> 2.5)
+    rainbow (3.1.1)
     rake (13.1.0)
     rdoc (6.6.0)
       psych (>= 4.0.0)
+    react-rails (3.1.1)
+      babel-transpiler (>= 0.7.0)
+      connection_pool
+      execjs
+      railties (>= 3.2)
+      tilt
     redis (4.8.1)
     regexp_parser (2.8.2)
     reline (0.4.0)
@@ -210,6 +239,20 @@ GEM
       actionpack (>= 5.2)
       railties (>= 5.2)
     rexml (3.2.6)
+    rubocop (1.57.2)
+      json (~> 2.3)
+      language_server-protocol (>= 3.17.0)
+      parallel (~> 1.10)
+      parser (>= 3.2.2.4)
+      rainbow (>= 2.2.2, < 4.0)
+      regexp_parser (>= 1.8, < 3.0)
+      rexml (>= 3.2.5, < 4.0)
+      rubocop-ast (>= 1.28.1, < 2.0)
+      ruby-progressbar (~> 1.7)
+      unicode-display_width (>= 2.4.0, < 3.0)
+    rubocop-ast (1.30.0)
+      parser (>= 3.2.1.0)
+    ruby-progressbar (1.13.0)
     rubyzip (2.3.2)
     sassc (2.4.0)
       ffi (~> 1.9)
@@ -242,6 +285,7 @@ GEM
       railties (>= 6.0.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
+    unicode-display_width (2.5.0)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (4.2.1)
@@ -269,13 +313,18 @@ DEPENDENCIES
   debug
   devise
   dotenv-rails
+  flipper
+  flipper-active_record
   font-awesome-sass (~> 6.1)
   importmap-rails
   jbuilder
   pg (~> 1.1)
+  pg_search
   puma (~> 5.0)
   rails (~> 7.0.8)
+  react-rails
   redis (~> 4.0)
+  rubocop
   sassc-rails
   selenium-webdriver
   simple_form!
