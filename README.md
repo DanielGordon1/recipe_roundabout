@@ -30,12 +30,14 @@ Technical setup / Non functional requirements
 - Use react components in the Rails app to build the UI.
 - Hosting on fly.io.
 - Gems to use:
-    - PGanalayze (basic DB analysis)
+    - PGanalayze (basic DB analysis / pg_query)
     - Datadog (full scale monitoring)
-    - Rubocop
-    - Flipper
-    - React-rails
-    - Devise
+    - Rubocop (✅)
+    - Flipper (✅)
+    - React-rails (✅)
+    - Devise (✅)
+    - PG search (✅)
+    - Bullet (analyze slow queries / unused includes etc.) (✅)
 
 
 TODO:
@@ -43,8 +45,8 @@ TODO:
 - Finish functional requirements - DONE
 - DB design (use LW tool to create Normalized DB design.)(https://kitt.lewagon.com/db/116190) - WIP
 - Wrap head around non-functional requiremnts (Security/Scalibilty/Availability) Fly.io / Rails / Webpack / Asset Pipeline - DONE
-- Setup Rails App Backend
-- Remove unused Gems
+- Setup Rails App Backend - DONE
+- Add/Remove unused Gems - 
 - Create models / DB structure
 - Add some unit tests
 - Build Basic UI for logging in / and searching
