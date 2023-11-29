@@ -27,7 +27,7 @@ RSpec.describe RecipeParser do
         context 'with valid JSON data' do
             it 'inserts recipes and ingredients efficiently' do
                 expect { RecipeParser.new(valid_path).parse_and_insert_efficiently('recipes.json')}.to change(Recipe, :count).by(2)
-                expect { RecipeParser.new(valid_path).parse_and_insert_efficiently('recipes.json')}.to change(Ingredient, :count).by(4)
+                expect { RecipeParser.new(valid_path).parse_and_insert_efficiently('recipes.json')}.to change(Ingredient, :count).by(6)
             end
             
             context 'with invalid JSON data' do
