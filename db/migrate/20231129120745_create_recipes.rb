@@ -7,7 +7,7 @@ class CreateRecipes < ActiveRecord::Migration[7.0]
       t.integer :preparation_time_minutes
       t.float :rating
       t.string :image_url
-      t.references :category, null: true, foreign_key: true
+      t.references :recipe_category, null: true, foreign_key: true
 
       t.timestamps
     end
