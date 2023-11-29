@@ -22,7 +22,7 @@ class RecipeParser
     File.extname(file_path).delete('.')
   end
 
-  def parse_and_insert_efficiently(_file_path)
+  def parse_and_insert_efficiently()
     recipes = JSON.parse(@json_data)
     # Preload data
     categories = RecipeCategory.all.to_a

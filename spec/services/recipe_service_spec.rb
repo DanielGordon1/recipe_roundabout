@@ -30,10 +30,10 @@ RSpec.describe RecipeParser do
     context 'with valid JSON data' do
       it 'inserts recipes and ingredients efficiently' do
         expect do
-          RecipeParser.new(valid_path).parse_and_insert_efficiently('recipes.json')
+          RecipeParser.new(valid_path).parse_and_insert_efficiently
         end.to change(Recipe, :count).by(2)
         expect do
-          RecipeParser.new(valid_path).parse_and_insert_efficiently('recipes.json')
+          RecipeParser.new(valid_path).parse_and_insert_efficiently
         end.to change(Ingredient, :count).by(6)
       end
 
@@ -41,7 +41,7 @@ RSpec.describe RecipeParser do
         it 'raises an error when JSON is malformed' do
           allow(File).to receive(:read).and_return(invalid_json)
           expect do
-            RecipeParser.new(valid_path).parse_and_insert_efficiently('invalid_recipes.json')
+            RecipeParser.new(valid_path).parse_and_insert_efficiently
           end.to raise_error(JSON::ParserError)
         end
       end

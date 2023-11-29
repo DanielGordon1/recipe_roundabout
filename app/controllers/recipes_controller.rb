@@ -1,9 +1,16 @@
 class RecipesController < ApplicationController
-    skip_before_action :authenticate_user!, only: [:index]
+  skip_before_action :authenticate_user!, only: [:index]
+  
+  def index
+    if params[:query].present?
+      @recipes = Recipe.search_by_title_and_ingredients(params[:query])
+    else
+      @recipes = Recipe.all
+    end
 
-    def index
-      query = params[:query]
-      recipes = RecipeSearchService.search(query)
-      render json: recipes, status: :ok
+    respond_to do |format|
+      format.html { render 'index' }
+      format.json { render json: @recipes, status: :ok }
     end
   end
+end

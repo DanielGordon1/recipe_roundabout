@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const RecipeSearch = () => {
+const RecipeSearch = ({}) => {
   const [query, setQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -12,8 +12,13 @@ const RecipeSearch = () => {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await axios.get(`/recipes?query=${query}`);
+      const response = await axios.get(`/recipes?query=${query}`, {
+        headers: {
+          'Accept': 'application/json' // Specify that the client expects JSON
+        }}
+      );
       setSearchResults(response.data);
+      console.log(response.data)
     } catch (error) {
       setError('Error fetching recipes. Please try again.');
     } finally {
@@ -22,7 +27,7 @@ const RecipeSearch = () => {
   };
 
   return (
-    <div>
+      <div>
       <form onSubmit={handleSearch}>
         <input
           type="text"
@@ -35,14 +40,15 @@ const RecipeSearch = () => {
 
       {isLoading && <p>Loading...</p>}
       {error && <p>{error}</p>}
+    
 
       <div>
-        <h2>Search Results:</h2>
+        <h2>Filtered Recipes:</h2>
         <ul>
           {searchResults.map((recipe) => (
             <li key={recipe.id}>
               <h3>{recipe.title}</h3>
-              <p>Cooking Time: {recipe.cook_time}</p>
+              <p>Cooking Time: {recipe.cooking_time_minutes}</p>
             </li>
           ))}
         </ul>
