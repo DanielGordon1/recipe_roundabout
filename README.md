@@ -43,11 +43,14 @@ Technical setup / Non functional requirements
 TODO:
 - Look into www.fly.io (sort of Heroku) - DONE
 - Finish functional requirements - DONE
-- DB design (use LW tool to create Normalized DB design.)(https://kitt.lewagon.com/db/116190) - WIP
-- Wrap head around non-functional requiremnts (Security/Scalibilty/Availability) Fly.io / Rails / Webpack / Asset Pipeline - DONE
+- DB design (use LW tool to create Normalized DB design.)(https://kitt.lewagon.com/db/116190) - DONE
+    - Contemplated using jsonb column for ingredients but as I expected queries on these columns are usually quite slow.
+    - Contemplated splitting the ingredient description into a quantity and a name, but out of scope for now.
+    - The cuisine property seems mostly empty in the JSON data. Adding it for completeness though (could/should be external table since IMO a dish can belong to multiple Cuisines')
+- Wrap head around non-functional requirements (Security/Scalibilty/Availability) Fly.io / Rails / Webpack / Asset Pipeline - DONE
 - Setup Rails App Backend - DONE
-- Add/Remove unused Gems - 
-- Create models / DB structure
+- Add/Removed unused Gems - DONE
+- Create models / DB structure 
 - Add some unit tests
 - Build Basic UI for logging in / and searching
 - Build Recipe controller w/ filtered index method
