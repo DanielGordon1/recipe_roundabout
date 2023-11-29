@@ -51,12 +51,12 @@ TODO:
 - Wrap head around non-functional requirements (Security/Scalibilty/Availability) Fly.io / Rails / Webpack / Asset Pipeline - DONE
 - Setup Rails App Backend - DONE
 - Add/Removed unused Gems - DONE
-- Create models / DB structure 
-- Add some unit tests
-- Build Basic UI for logging in / and searching
+- Create models / DB structure - DONE
+- Setup service to parse recipes and populate the DB and add tests. - DONE
+- Build Basic UI for logging in - DONE (LW template)
 - Build Recipe controller w/ filtered index method
 - Build Search Service
-- Use React inside the rails app for UI / FE.
+- Use React inside the rails app for UI / FE. - DONE
     - How to send the data from the controller to the view ? -> view_helper react_component
 - How can I implement a feature flag using flipper?
 (- Throw in a docker container?)
