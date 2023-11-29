@@ -54,6 +54,8 @@ gem "sassc-rails"
 
 gem "pg_search"
 gem "rubocop"
+gem 'rubocop-performance', require: false
+gem 'rubocop-rails', require: false
 gem "flipper"
 gem "flipper-active_record"
 gem "react-rails"
