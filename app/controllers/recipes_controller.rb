@@ -5,7 +5,7 @@ class RecipesController < ApplicationController
     if params[:query].present?
       @recipes = Recipe.search_by_title_and_ingredients(params[:query])
     else
-      @recipes = Recipe.all
+      @recipes = Recipe.order("RANDOM()").limit(10)
     end
 
     respond_to do |format|
