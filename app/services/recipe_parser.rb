@@ -34,9 +34,9 @@ class RecipeParser
     recipes.each_slice(batch_size).flat_map do |recipe_batch|
       recipe_ingredients = []
       recipe_batch.map! do |recipe_data|
-        ingredients = Ingredient.insert_all(recipe_data["ingredients"].map { |ingredient| { description: ingredient }})
+        # ingredients = recipe_data["ingredients"].map { |ingredient| { description: ingredient }})
         # Store ingredients in an array
-        recipe_ingredients << ingredients.map { |ingredient| { recipe_id: nil, id: ingredient['id'] } }
+        recipe_ingredients << recipe_data['ingredients'].map { |ingredient| { description: ingredient } }
         {
           title: recipe_data['title'],
           cooking_time_minutes: recipe_data['cook_time'],
@@ -57,7 +57,7 @@ class RecipeParser
       ingredients = []
       recipe_ingredients.each_with_index do |recipe_ingredient_array, index|
         recipe_ingredient_array.each do |ingredient|
-          ingredients << { recipe_id: saved_recipe_ids[index], id: ingredient[:id] }
+          ingredients << { recipe_id: saved_recipe_ids[index], description: ingredient[:description] }
         end
       end
       Ingredient.upsert_all(ingredients)

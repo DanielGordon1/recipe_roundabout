@@ -32,7 +32,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_29_120842) do
 
   create_table "ingredients", force: :cascade do |t|
     t.string "description"
-    t.bigint "recipe_id"
+    t.bigint "recipe_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["recipe_id"], name: "index_ingredients_on_recipe_id"
