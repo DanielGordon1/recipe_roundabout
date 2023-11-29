@@ -59,7 +59,7 @@ gem 'rubocop-rails', require: false
 gem "flipper"
 gem "flipper-active_record"
 gem "shakapacker", "= 7.1"
-gem "react-rails", "= 3.1"
+gem "react-rails", "= 3.1.1"
 
 group :development, :test do
   gem "dotenv-rails"

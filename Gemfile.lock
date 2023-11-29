@@ -230,7 +230,7 @@ GEM
     rake (13.1.0)
     rdoc (6.6.0)
       psych (>= 4.0.0)
-    react-rails (3.1.0)
+    react-rails (3.1.1)
       babel-transpiler (>= 0.7.0)
       connection_pool
       execjs
@@ -343,7 +343,7 @@ DEPENDENCIES
   pg_search
   puma (~> 5.0)
   rails (~> 7.0.8)
-  react-rails (= 3.1)
+  react-rails (= 3.1.1)
   redis (~> 4.0)
   rubocop
   rubocop-performance
