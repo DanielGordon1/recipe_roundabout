@@ -8,11 +8,12 @@ Functional Requirements:
 - User can search Recipes based on name.
 - User can search Recipes based on ingredients.
 - User can search Recipes based on their cooking time.
-- User can favorite(like) an Ingredient
-- User can favorite(like) a Recipe
-- User can view al his / her favorite recipes
+- User can favorite(like) an Ingredient (optional)
+- User can favorite(like) a Recipe (optional)
+- User can view al his / her favorite recipes (optional)
 - User can search for Recipes on the internet when the DB does not yield results
     - Search for recommendations using ChatGPT
+    - Search for recommendations using the Scraper
 
 Data 
 - Integrate the Recipe Scraper into our codebase and run it in a rake task every night that creates a JSON.
