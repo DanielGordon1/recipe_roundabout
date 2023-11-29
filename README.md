@@ -8,7 +8,6 @@ Functional Requirements:
 - User can search Recipes based on name.
 - User can search Recipes based on ingredients.
 - User can search Recipes based on their cooking time.
-- User can favorite(like) an Ingredient (optional)
 - User can favorite(like) a Recipe (optional)
 - User can view al his / her favorite recipes (optional)
 - User can search for Recipes on the internet when the DB does not yield results
@@ -48,6 +47,7 @@ TODO:
     - Contemplated using jsonb column for ingredients but as I expected queries on these columns are usually quite slow.
     - Contemplated splitting the ingredient description into a quantity and a name, but out of scope for now.
     - The cuisine property seems mostly empty in the JSON data. Adding it for completeness though (could/should be external table since IMO a dish can belong to multiple Cuisines')
+    - Contemplated having a n:n relationship betweem recipes and ingredients, but given the current scope this is unneccesary and makes the DB import complicated to be done efficiently.
 - Wrap head around non-functional requirements (Security/Scalibilty/Availability) Fly.io / Rails / Webpack / Asset Pipeline - DONE
 - Setup Rails App Backend - DONE
 - Add/Removed unused Gems - DONE
