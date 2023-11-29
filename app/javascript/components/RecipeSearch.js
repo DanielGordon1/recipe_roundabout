@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const RecipeSearch = ({}) => {
+const RecipeSearch = ({recipes}) => {
   const [query, setQuery] = useState('');
-  const [searchResults, setSearchResults] = useState([]);
+  const [searchResults, setSearchResults] = useState(recipes);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -12,6 +12,7 @@ const RecipeSearch = ({}) => {
     setIsLoading(true);
     setError(null);
     try {
+      // Make this a search as you type
       const response = await axios.get(`/recipes?query=${query}`, {
         headers: {
           'Accept': 'application/json' // Specify that the client expects JSON
