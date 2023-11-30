@@ -58,13 +58,10 @@ TODO:
 - Build Search Service - DONE
 - Use React inside the rails app for UI / FE. - DONE
     - How to send the data from the controller to the view ? -> view_helper react_component
-- Add a Controller test
-- Make the search happen as you type
-- Add some FE magic.
+- Add a Controller test - DONE
+- Add some FE magic. - DONE
+- Make the search happen as you type - Do later
 - How can I implement a feature flag using flipper?
-(- Throw in a docker container?)
-
-
 
 ## Objective
 
