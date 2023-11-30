@@ -25,7 +25,7 @@ UI
 - If the user reaches the end of the result list, ask if the user wants to search the internet. (ChatGPT)
 - User can sort recipes based on their cooking time.
 
-Technical setup / Non functional requirements
+Technical setup / Non-functional requirements
 - Rails application (Use a LW rails template)
 - Use react components in the Rails app to build the UI.
 - Hosting on fly.io.
@@ -60,8 +60,9 @@ TODO:
     - How to send the data from the controller to the view ? -> view_helper react_component
 - Add a Controller test - DONE
 - Add some FE magic. - DONE
-- Make the search happen as you type - Do later
-- How can I implement a feature flag using flipper?
+- How can I implement a feature flag using flipper? 
+- Make the search happen as you type
+
 
 ## Objective
 
