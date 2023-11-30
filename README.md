@@ -60,8 +60,11 @@ TODO:
     - How to send the data from the controller to the view ? -> view_helper react_component
 - Add a Controller test - DONE
 - Add some FE magic. - DONE
+- Add option to like / save a recipe.
+- Host the app on fly.io
 - How can I implement a feature flag using flipper? 
 - Make the search happen as you type
+
 
 
 ## Objective
@@ -76,13 +79,13 @@ By prototype, we mean:
 We expect to use this prototype as a starting point to discuss current implenentation details, as well as ideas for improvement.
 
 #### Tech must-haves
-- [ ] MySQL / PostgreSQL or any other MySQL-compatible database.
-- [ ] A backend application which responds to queries
-- [ ] A web interface (can be VERY simple)
-- [ ] Ruby on Rails (if you're not familiar with Ruby on Rails, use something you're familiar with)
+- [X] MySQL / PostgreSQL or any other MySQL-compatible database.
+- [X] A backend application which responds to queries
+- [X] A web interface (can be VERY simple)
+- [X] Ruby on Rails (if you're not familiar with Ruby on Rails, use something you're familiar with)
 
 #### Bonus points
-- [ ] React
+- [X] React
 - [ ] Application is hosted on fly.io
 
 ## Data

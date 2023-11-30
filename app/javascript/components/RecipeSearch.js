@@ -17,7 +17,6 @@ const RecipeSearch = ({ recipes }) => {
           'Accept': 'application/json'
         }
       });
-      console.log(response.data)
       setSearchResults(response.data);
     } catch (error) {
       setError('Error fetching recipes. Please try again.');
@@ -40,8 +39,6 @@ const RecipeSearch = ({ recipes }) => {
 
       {isLoading && <p>Loading...</p>}
       {error && <p>{error}</p>}
-      <h2>Filtered Recipes:</h2>
-      <br/>
       <div className="recipe-list">
       
       {searchResults.map((recipe) => (
