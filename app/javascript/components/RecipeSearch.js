@@ -55,11 +55,12 @@ const RecipeSearch = ({ recipes }) => {
               </div>
               <div className="ingredients">
                 <h4>Ingredients:</h4>
-                {/* <ul>
+                {console.log(recipe)}
+                <ul>
                   {recipe.ingredients.map((ingredient, index) => (
                     <li key={index}>{ingredient.description}</li>
                   ))}
-                </ul> */}
+                </ul>
               </div>
             </li>
           ))}
