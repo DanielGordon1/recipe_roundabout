@@ -4,7 +4,7 @@ class RecipesController < ApplicationController
   def index
     if params[:query].present?
       # TODO: Should probably paginate this.
-      @recipes = Recipe.includes(:ingredients).search_by_title_and_ingredients(params[:query])
+      @recipes = Recipe.includes(:ingredients).search_by_title_and_ingredients(params[:query]).limit(50)
     else
       @recipes = Recipe.includes(:ingredients).order("RANDOM()").limit(10).as_json(include: :ingredients)
     end
