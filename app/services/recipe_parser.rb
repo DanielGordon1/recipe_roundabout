@@ -44,7 +44,7 @@ class RecipeParser
           rating: recipe_data['ratings'],
           cuisine: recipe_data['cuisine'],
           recipe_category_id: categories.find { |category| category.name == recipe_data['category'] }&.id,
-          user_id: authors.find { |author| author.username == recipe_data['author'] }&.id,
+          user_id: authors.find { |author| author.username == recipe_data['author'] }&.id, 
           image_url: recipe_data['image']
         }
       end
