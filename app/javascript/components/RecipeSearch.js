@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import RecipeCard from './RecipeCard';
 import axios from 'axios';
 
-const RecipeSearch = ({ recipes }) => {
+const RecipeSearch = ({ recipes, currentUser }) => {
   const [query, setQuery] = useState('');
   const [searchResults, setSearchResults] = useState(recipes);
   const [isLoading, setIsLoading] = useState(false);
@@ -25,6 +26,15 @@ const RecipeSearch = ({ recipes }) => {
     }
   };
 
+  const toggleFavorite = (recipeId) => {
+    setSearchResults((prevRecipes) =>
+      prevRecipes.map((recipe) =>
+        recipe.id === recipeId ? { ...recipe, isFavorited: !recipe.isFavorited } : recipe
+      )
+    );
+  };
+
+
   return (
     <div className="recipe-search">
       <form onSubmit={handleSearch}>
@@ -40,28 +50,16 @@ const RecipeSearch = ({ recipes }) => {
       {isLoading && <p>Loading...</p>}
       {error && <p>{error}</p>}
       <div className="recipe-list">
-      
-      {searchResults.map((recipe) => (
-        <div key={recipe.id} className="recipe-card">
-          <h3>{recipe.title}</h3>
-          <div className="recipe-info">
-            <p>Cooking Time: {recipe.cooking_time_minutes}</p>
-            <p>Prep Time: {recipe.preparation_time_minutes}</p>
-            <p>Rating: {recipe.rating}</p>
-            <p>Cuisine: {recipe.cuisine}</p>
-            <img src={recipe.image_url} alt={recipe.title} className="recipe-image" />
-          </div>
-          <div className="ingredients">
-            <h4>Ingredients:</h4>
-            <ul>
-              {recipe.ingredients.map((ingredient) => (
-                <li key={ingredient.id}>{ingredient.description}</li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      ))}
-    </div>
+        {searchResults.map((recipe) => (
+          <RecipeCard
+            key={recipe.id}
+            recipe={recipe}
+            isFavorited={recipe.isFavorited}
+            toggleFavorite={() => toggleFavorite(recipe.id)}
+            currentUser={currentUser}
+          />
+        ))}
+      </div>
     </div>
   );
 };

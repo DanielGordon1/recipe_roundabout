@@ -6,5 +6,5 @@ class User < ApplicationRecord
 
   has_many :recipes, inverse_of: :author, dependent: :destroy
   has_many :users_recipes, dependent: :destroy
-  has_many :favorited_recipes, through: :users_recipes, source: :recipe
+  has_many :favorite_recipes, through: :users_recipes, source: :recipe
 end

@@ -40,4 +40,42 @@ RSpec.describe RecipesController, type: :controller do
       expect(parsed_response[1]['title']).to eq(@recipe2.title)
     end
   end
+
+  describe 'POST #favorite' do
+    let(:user) { create(:user) }
+    let(:recipe) { create(:recipe, :author, :category) }
+
+    before { sign_in user }
+
+    context 'when the recipe is favorited by the user' do
+      before do
+        post :favorite, params: { id: recipe.id }
+      end
+
+      it 'adds the recipe to user favorites' do
+        expect(user.favorite_recipes).to include(recipe)
+      end
+
+      it 'returns a success JSON response' do
+        expect(response).to have_http_status(:success)
+        expect(JSON.parse(response.body)['favorited']).to eq(true)
+      end
+    end
+
+    context 'when the recipe is unfavorited by the user' do
+      before do
+        user.favorite_recipes << recipe
+        post :favorite, params: { id: recipe.id }
+      end
+
+      it 'removes the recipe from user favorites' do
+        expect(user.favorite_recipes).not_to include(recipe)
+      end
+
+      it 'returns a success JSON response' do
+        expect(response).to have_http_status(:success)
+        expect(JSON.parse(response.body)['favorited']).to eq(false)
+      end
+    end
+  end
 end

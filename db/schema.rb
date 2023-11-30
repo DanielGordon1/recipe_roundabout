@@ -73,11 +73,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_30_205847) do
   end
 
   create_table "users_recipes", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "recipe_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["recipe_id"], name: "index_users_recipes_on_recipe_id"
+    t.index ["user_id"], name: "index_users_recipes_on_user_id"
   end
 
   add_foreign_key "ingredients", "recipes"
   add_foreign_key "recipes", "recipe_categories"
   add_foreign_key "recipes", "users"
+  add_foreign_key "users_recipes", "recipes"
+  add_foreign_key "users_recipes", "users"
 end
