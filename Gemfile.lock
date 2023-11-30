@@ -124,6 +124,11 @@ GEM
       railties (>= 3.2)
     erubi (1.12.0)
     execjs (2.9.1)
+    factory_bot (6.4.2)
+      activesupport (>= 5.0.0)
+    factory_bot_rails (6.4.2)
+      factory_bot (~> 6.4)
+      railties (>= 5.0.0)
     ffi (1.16.3)
     flipper (1.0.0)
       brow (~> 0.4.1)
@@ -352,6 +357,7 @@ DEPENDENCIES
   debug
   devise
   dotenv-rails
+  factory_bot_rails
   flipper
   flipper-active_record
   font-awesome-sass (~> 6.1)

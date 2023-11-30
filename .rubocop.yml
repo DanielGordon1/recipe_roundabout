@@ -43,3 +43,7 @@ Style/EmptyMethod:
   Enabled: false
 Bundler/OrderedGems:
   Enabled: false
+Metrics/BlockLength:
+  Enabled: true
+  Exclude: 
+    - spec/**/*

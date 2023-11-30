@@ -1,6 +1,6 @@
 class RecipesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index]
-  
+
   def index
     if params[:query].present?
       @recipes = Recipe.search_by_title_and_ingredients(params[:query])

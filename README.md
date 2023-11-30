@@ -53,11 +53,14 @@ TODO:
 - Add/Removed unused Gems - DONE
 - Create models / DB structure - DONE
 - Setup service to parse recipes and populate the DB and add tests. - DONE
-- Build Basic UI for logging in - DONE (LW template)
-- Build Recipe controller w/ filtered index method
-- Build Search Service
+- Build Basic UI for logging in - DONE (LW template) - DONE
+- Build Recipe controller w/ filtered index method - DONE
+- Build Search Service - DONE
 - Use React inside the rails app for UI / FE. - DONE
     - How to send the data from the controller to the view ? -> view_helper react_component
+- Add a Controller test
+- Make the search happen as you type
+- Add some FE magic.
 - How can I implement a feature flag using flipper?
 (- Throw in a docker container?)
 

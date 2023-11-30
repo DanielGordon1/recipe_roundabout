@@ -1,8 +1,8 @@
 class Recipe < ApplicationRecord
   include PgSearch::Model
-  belongs_to :user
-  belongs_to :category
-  has_many :ingredients
+  belongs_to :author, class_name: 'User'
+  belongs_to :category, class_name: 'RecipeCategory'
+  has_many :ingredients, dependent: :destroy
   pg_search_scope :search_by_title_and_ingredients,
                   against: {
                     title: 'A' # Assuming 'title' is a column in the 'recipes' table
