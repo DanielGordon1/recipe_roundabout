@@ -34,7 +34,6 @@ class RecipeParser
     recipes.each_slice(batch_size).flat_map do |recipe_batch|
       recipe_ingredients = []
       recipe_batch.map! do |recipe_data|
-        # ingredients = recipe_data["ingredients"].map { |ingredient| { description: ingredient }})
         # Store ingredients in an array
         recipe_ingredients << recipe_data['ingredients'].map { |ingredient| { description: ingredient } }
         {
@@ -49,7 +48,7 @@ class RecipeParser
         }
       end
       # Insert and upsert skip AR validations and callbacks.
-      # Luckily we have "some" DB level constraints.
+      # Luckily we have some DB level constraints.
       saved_recipes = Recipe.insert_all(recipe_batch)
       saved_recipe_ids = saved_recipes.pluck('id')
 

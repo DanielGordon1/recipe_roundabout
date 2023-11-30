@@ -21,7 +21,6 @@ Data
 UI
 - We first do a search and load from the DB.
 - Results are sorted based on their match. (Maybe use search scope in associated search for PG search https://github.com/Casecommons/pg_search)
-- If there are no results ask if the user wants to search the internet.
 - If the user reaches the end of the result list, ask if the user wants to search the internet. (ChatGPT)
 - User can sort recipes based on their cooking time.
 
@@ -60,6 +59,7 @@ TODO:
     - How to send the data from the controller to the view ? -> view_helper react_component
 - Add a Controller test - DONE
 - Add some FE magic. - DONE
+- Add pagination on the results.
 - Add option to like / save a recipe.
 - Host the app on fly.io
 - How can I implement a feature flag using flipper? 
