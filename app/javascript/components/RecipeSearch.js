@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import RecipeCard from './RecipeCard';
-import axios from 'axios';
+import api from '../packs/axios';
 
 const RecipeSearch = ({ recipes, currentUser }) => {
   const [query, setQuery] = useState('');
@@ -13,11 +13,7 @@ const RecipeSearch = ({ recipes, currentUser }) => {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await axios.get(`/recipes?query=${query}`, {
-        headers: {
-          'Accept': 'application/json'
-        }
-      });
+      const response = await api.get(`/recipes?query=${query}`);
       setSearchResults(response.data);
     } catch (error) {
       setError('Error fetching recipes. Please try again.');

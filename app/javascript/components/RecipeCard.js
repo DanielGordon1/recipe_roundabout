@@ -1,23 +1,14 @@
 import React from 'react';
-import axios from 'axios';
+import api from '../packs/axios';
 
 const RecipeCard = ({ recipe, isFavorited, toggleFavorite, currentUser }) => {
-  const csrfToken = document.querySelector('[name="csrf-token"]').content;
-
-  const api = axios.create({
-    headers: {
-      'X-CSRF-Token': csrfToken,
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-    },
-  });
 
   const handleFavorite = async () => {
     try {
       await api.post(`/recipes/${recipe.id}/favorite`);
       toggleFavorite();
     } catch (error) {
-      alert('Whoopsie - something sent wrong')
+      alert('Whoopsie - something sent wrong 🥲')
     }
   };
 
