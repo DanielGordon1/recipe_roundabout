@@ -25,6 +25,9 @@
   border-top: 1px solid #ccc;
   margin-top: 20px;
   padding-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* Adjust the gap between recipe cards */
 }
 
 .recipe-item {
@@ -66,5 +69,39 @@
 }
 
 .ingredients li {
+  margin-bottom: 5px;
+}
+
+
+.recipe-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  flex: 0 0 calc(25% - 20px); /* Set the width of each card */
+}
+
+.recipe-card h3 {
+  margin-top: 0;
+}
+
+.recipe-card .recipe-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.recipe-card .ingredients {
+  margin-top: 10px;
+}
+
+.recipe-card .ingredients h4 {
+  margin-bottom: 5px;
+}
+
+.recipe-card .ingredients ul {
+  padding-left: 20px;
+}
+
+.recipe-card .ingredients li {
   margin-bottom: 5px;
 }

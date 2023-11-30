@@ -39,33 +39,31 @@ const RecipeSearch = ({ recipes }) => {
 
       {isLoading && <p>Loading...</p>}
       {error && <p>{error}</p>}
-
+      <h2>Filtered Recipes:</h2>
+      <br/>
       <div className="recipe-list">
-        <h2>Filtered Recipes:</h2>
-        <ul>
-          {searchResults.map((recipe) => (
-            <li key={recipe.id} className="recipe-item">
-              <div className="recipe-info">
-                <h3>{recipe.title}</h3>
-                <p>Cooking Time: {recipe.cooking_time_minutes}</p>
-                <p>Prep Time: {recipe.preparation_time_minutes}</p>
-                <p>Rating: {recipe.rating}</p>
-                <p>Cuisine: {recipe.cuisine}</p>
-                <img src={recipe.image_url} alt={recipe.title} className="recipe-image" />
-              </div>
-              <div className="ingredients">
-                <h4>Ingredients:</h4>
-                {console.log(recipe)}
-                <ul>
-                  {recipe.ingredients.map((ingredient, index) => (
-                    <li key={index}>{ingredient.description}</li>
-                  ))}
-                </ul>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </div>
+      
+      {recipes.map((recipe) => (
+        <div key={recipe.id} className="recipe-card">
+          <h3>{recipe.title}</h3>
+          <div className="recipe-info">
+            <p>Cooking Time: {recipe.cooking_time_minutes}</p>
+            <p>Prep Time: {recipe.preparation_time_minutes}</p>
+            <p>Rating: {recipe.rating}</p>
+            <p>Cuisine: {recipe.cuisine}</p>
+            <img src={recipe.image_url} alt={recipe.title} className="recipe-image" />
+          </div>
+          <div className="ingredients">
+            <h4>Ingredients:</h4>
+            <ul>
+              {recipe.ingredients.map((ingredient) => (
+                <li key={ingredient.id}>{ingredient.description}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      ))}
+    </div>
     </div>
   );
 };
