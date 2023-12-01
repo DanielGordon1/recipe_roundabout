@@ -8,7 +8,7 @@ Functional Requirements:
 - User can search Recipes based on title. (✅)
 - User can search Recipes based on ingredients. (✅)
 - User can favorite(like) a Recipe (✅)
-- User can view al his / her favorite recipes (optional) 
+- User can view al his / her favorite recipes (✅)
 - User can search for Recipes on the internet when the DB does not yield results
     - Search for recommendations using ChatGPT
 
@@ -59,7 +59,7 @@ TODO:
 - Add some FE magic. - DONE
 - Add option to like / save a recipe. - DONE
 - Clean up Navbar - DONE
-- Add a page to view liked recipes
+- Add a page to view liked recipes - DONE
 - Host the app on fly.io
 - Add pagination on the results.
 - How can I implement a feature flag using flipper? 
