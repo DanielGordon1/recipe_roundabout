@@ -60,7 +60,7 @@ TODO:
 - Add option to like / save a recipe. - DONE
 - Clean up Navbar - DONE
 - Add a page to view liked recipes - DONE
-- Host the app on fly.io
+- Host the app on fly.io - WIP (need Credit Card)
 - Add pagination on the results.
 - How can I implement a feature flag using flipper? 
 - Make the search happen as you type
