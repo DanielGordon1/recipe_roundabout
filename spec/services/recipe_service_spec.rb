@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe RecipeParser do
   let(:invalid_json) { 'invalid json data' }
-  let(:valid_path) { Rails.root.join('tmp/data/tests/recipes.json').to_s }
+  let(:valid_path) { Rails.root.join('storage/data/tests/recipes.json').to_s }
 
   describe '#initialize' do
     context 'with unsupported file format' do
