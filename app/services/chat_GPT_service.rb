@@ -1,7 +1,7 @@
 require 'rest-client'
 require 'json'
 
-class ChatGPTService
+class ChatGptService
   CHATGPT_API_ENDPOINT = 'ENDPOINT'.freeze
   API_KEY = ENV['CHAT_GPT'].freeze
 
