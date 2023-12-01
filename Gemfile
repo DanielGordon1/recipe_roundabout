@@ -55,6 +55,8 @@ gem "flipper-active_record"
 gem "shakapacker", "= 7.1"
 gem "react-rails", "= 3.1.1"
 
+gem 'rest-client'
+
 group :development, :test do
   gem "dotenv-rails"
   gem 'rspec-rails', '~> 6.1.0'
