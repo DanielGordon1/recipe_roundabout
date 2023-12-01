@@ -118,6 +118,8 @@ GEM
       responders
       warden (~> 1.2.3)
     diff-lcs (1.5.0)
+    dockerfile-rails (1.5.12)
+      rails (>= 3.0.0)
     domain_name (0.6.20231109)
     dotenv (2.8.1)
     dotenv-rails (2.8.1)
@@ -187,6 +189,8 @@ GEM
       net-protocol
     netrc (0.11.0)
     nio4r (2.6.1)
+    nokogiri (1.15.5-aarch64-linux)
+      racc (~> 1.4)
     nokogiri (1.15.5-arm64-darwin)
       racc (~> 1.4)
     nokogiri (1.15.5-x86_64-linux)
@@ -320,6 +324,11 @@ GEM
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
     semantic_range (3.0.0)
+    sentry-rails (5.14.0)
+      railties (>= 5.0)
+      sentry-ruby (~> 5.14.0)
+    sentry-ruby (5.14.0)
+      concurrent-ruby (~> 1.0, >= 1.0.2)
     shakapacker (7.1.0)
       activesupport (>= 5.2)
       rack-proxy (>= 0.6.1)
@@ -356,6 +365,7 @@ GEM
     zeitwerk (2.6.12)
 
 PLATFORMS
+  aarch64-linux
   arm64-darwin-21
   x86_64-linux
 
@@ -367,6 +377,7 @@ DEPENDENCIES
   capybara
   debug
   devise
+  dockerfile-rails (>= 1.5)
   dotenv-rails
   factory_bot_rails
   flipper
@@ -388,6 +399,8 @@ DEPENDENCIES
   rubocop-rails
   sassc-rails
   selenium-webdriver
+  sentry-rails (~> 5.14)
+  sentry-ruby (~> 5.14)
   shakapacker (= 7.1)
   simple_form!
   sprockets-rails

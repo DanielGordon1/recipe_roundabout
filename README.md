@@ -63,7 +63,7 @@ TODO:
 - Host the app on fly.io - WIP (need Credit Card)
 - Containerize the app.
 - Add pagination on the results.
-- How can I implement a feature flag using flipper? 
+- Add ChatGPT recommendations for recipes based on favorite recipes and ingredients.
 - Make the search happen as you type
 
 ## Objective
