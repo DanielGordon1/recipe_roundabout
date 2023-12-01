@@ -7,4 +7,10 @@ Rails.application.routes.draw do
       post 'favorite'
     end
   end
+
+  resource :user do
+    member do
+      get "favorite_recipes", to: "user_recipes#index"
+    end
+  end
 end

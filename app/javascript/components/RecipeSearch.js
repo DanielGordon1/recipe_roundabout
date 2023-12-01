@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import RecipeCard from './RecipeCard';
+import RecipeList from './RecipeList';
 import api from '../packs/axios';
 
-const RecipeSearch = ({ recipes, currentUser }) => {
+const RecipeSearch = ({ recipes, currentUser, favoriteRecipeIds }) => {
   const [query, setQuery] = useState('');
   const [searchResults, setSearchResults] = useState(recipes);
   const [isLoading, setIsLoading] = useState(false);
@@ -22,14 +22,6 @@ const RecipeSearch = ({ recipes, currentUser }) => {
     }
   };
 
-  const toggleFavorite = (recipeId) => {
-    setSearchResults((prevRecipes) =>
-      prevRecipes.map((recipe) =>
-        recipe.id === recipeId ? { ...recipe, isFavorited: !recipe.isFavorited } : recipe
-      )
-    );
-  };
-
 
   return (
     <div className="recipe-search">
@@ -45,17 +37,11 @@ const RecipeSearch = ({ recipes, currentUser }) => {
 
       {isLoading && <p>Loading...</p>}
       {error && <p>{error}</p>}
-      <div className="recipe-list">
-        {searchResults.map((recipe) => (
-          <RecipeCard
-            key={recipe.id}
-            recipe={recipe}
-            isFavorited={recipe.isFavorited}
-            toggleFavorite={() => toggleFavorite(recipe.id)}
-            currentUser={currentUser}
-          />
-        ))}
-      </div>
+      <RecipeList
+        recipeList={searchResults}
+        currentUser={currentUser}
+        favoriteRecipeIds={favoriteRecipeIds}
+      />
     </div>
   );
 };

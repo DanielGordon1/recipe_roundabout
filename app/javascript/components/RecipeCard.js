@@ -1,22 +1,12 @@
 import React from 'react';
-import api from '../packs/axios';
 
 const RecipeCard = ({ recipe, isFavorited, toggleFavorite, currentUser }) => {
-
-  const handleFavorite = async () => {
-    try {
-      await api.post(`/recipes/${recipe.id}/favorite`);
-      toggleFavorite();
-    } catch (error) {
-      alert('Whoopsie - something sent wrong 🥲')
-    }
-  };
 
   return (
     <div key={recipe.id} className="recipe-card">
       <h3>{recipe.title}</h3>
       {currentUser && 
-        <button onClick={handleFavorite}>
+        <button onClick={toggleFavorite}>
           {isFavorited ? 'Unfavorite' : 'Favorite'}
         </button> 
       }

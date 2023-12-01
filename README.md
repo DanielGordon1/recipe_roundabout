@@ -3,20 +3,18 @@
 > **It's dinner time ! Create an application that helps users find the most relevant recipes that they can prepare with the ingredients that they have at home**
 
 Functional Requirements:
-- User can create an account
-- User can login
-- User can search Recipes based on name.
-- User can search Recipes based on ingredients.
-- User can search Recipes based on their cooking time.
-- User can favorite(like) a Recipe (optional)
-- User can view al his / her favorite recipes (optional)
+- User can create an account (✅)
+- User can login (✅)
+- User can search Recipes based on title. (✅)
+- User can search Recipes based on ingredients. (✅)
+- User can favorite(like) a Recipe (✅)
+- User can view al his / her favorite recipes (optional) 
 - User can search for Recipes on the internet when the DB does not yield results
     - Search for recommendations using ChatGPT
-    - Search for recommendations using the Scraper
 
 Data 
 - Integrate the Recipe Scraper into our codebase and run it in a rake task every night that creates a JSON.
-- Load the JSON into the DB every night using a rake task.
+- Load the JSON into the DB every night using a rake task. - Rake task done, cron not yet.
 
 UI
 - We first do a search and load from the DB.
@@ -59,13 +57,13 @@ TODO:
     - How to send the data from the controller to the view ? -> view_helper react_component
 - Add a Controller test - DONE
 - Add some FE magic. - DONE
-- Add pagination on the results.
-- Add option to like / save a recipe.
+- Add option to like / save a recipe. - DONE
+- Clean up Navbar - DONE
+- Add a page to view liked recipes
 - Host the app on fly.io
+- Add pagination on the results.
 - How can I implement a feature flag using flipper? 
 - Make the search happen as you type
-
-
 
 ## Objective
 
