@@ -60,8 +60,9 @@ TODO:
 - Add option to like / save a recipe. - DONE
 - Clean up Navbar - DONE
 - Add a page to view liked recipes - DONE
-- Host the app on fly.io - WIP (need Credit Card)
-- Containerize the app.
+- Host the app on fly.io - DONE
+- Containerize the app. - DONE
+- Figure out volumes to be able to seed DB
 - Add pagination on the results.
 - Add ChatGPT recommendations for recipes based on favorite recipes and ingredients.
 - Make the search happen as you type
