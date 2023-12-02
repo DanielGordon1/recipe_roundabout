@@ -30,7 +30,6 @@ console_command = "/rails/bin/rails console"
   url_prefix = "/"
 
 # mount volume on rails storage
-[mounts] = [
+[mounts]
   source="storage_vol"
-   destination="rails/storage
-]
+  destination="rails/storage"
