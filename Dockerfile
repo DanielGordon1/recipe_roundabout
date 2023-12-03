@@ -87,6 +87,8 @@ USER rails:rails
 ENV RAILS_LOG_TO_STDOUT="1" \
     RAILS_SERVE_STATIC_FILES="true"
 
+ENV PATH="/usr/local/node/bin:$PATH"
+
 # Entrypoint sets up the container.
 ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 
