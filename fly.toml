@@ -29,7 +29,3 @@ console_command = "/rails/bin/rails console"
   guest_path = "/rails/public"
   url_prefix = "/"
 
-# mount volume on rails storage
-[mounts]
-  source="storage_vol"
-  destination="rails/storage"
