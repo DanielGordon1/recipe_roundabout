@@ -33,6 +33,10 @@ const RecipeList = ({ recipeList, currentUser, favoriteRecipeIds, shouldFilter=f
     );
   }, [favoriteRecipeIds]);
 
+  useEffect(() => {
+    setRecipes(recipeList);
+  }, [recipeList]);
+
   return (
     <div className="recipe-list">
       {recipes.map((recipe) => (
