@@ -3,16 +3,15 @@ class RecipesController < ApplicationController
 
   def index
     if params[:query].present?
-      # TODO: Should probably paginate this.
-      @recipes = Recipe.includes(:ingredients).search_by_title_and_ingredients(params[:query]).limit(50)
+      @recipes = Recipe.includes(:ingredients).search_by_title_and_ingredients(params[:query]).limit(50).as_json(include: :ingredients)
     else
       @recipes = Recipe.includes(:ingredients).order("RANDOM()").limit(10).as_json(include: :ingredients)
     end
-    @current_user = current_user
+    set_favorite_on_recipes
 
     respond_to do |format|
       format.html { render 'index' }
-      format.json { render json: @recipes.to_json(include: :ingredients), status: :ok }
+      format.json { render json: @recipes, status: :ok }
     end
   end
 
@@ -24,5 +23,15 @@ class RecipesController < ApplicationController
       current_user.users_recipes.create(recipe_id: @recipe.id)
     end
     render json: { favorited: current_user.favorite_recipes.include?(@recipe) }
+  end
+
+  private 
+
+  def set_favorite_on_recipes
+    @favorite_recipe_ids = @current_user&.favorite_recipes&.pluck(:id) || []
+    @recipes.map! do |recipe|
+      recipe['is_favorited'] = true if @favorite_recipe_ids.include?(recipe['id'])
+      recipe
+    end
   end
 end

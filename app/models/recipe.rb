@@ -1,5 +1,7 @@
 class Recipe < ApplicationRecord
   include PgSearch::Model
+  attr_accessor :is_favorited
+
   belongs_to :author, class_name: 'User', foreign_key: 'user_id', inverse_of: :recipes
   belongs_to :category, class_name: 'RecipeCategory', foreign_key: :recipe_category_id, inverse_of: :recipes
   has_many :ingredients, dependent: :destroy

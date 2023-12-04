@@ -4,7 +4,7 @@ import api from '../packs/axios';
 
 const RecipeList = ({ recipeList, currentUser, favoriteRecipeIds, shouldFilter=false }) => {
   const [recipes, setRecipes] = useState(recipeList);
-
+  console.log(recipeList, currentUser, favoriteRecipeIds, shouldFilter)
   const toggleFavorite = async (recipeId) => {
     try {
       const response = await api.post(`/recipes/${recipeId}/favorite`);
@@ -15,7 +15,7 @@ const RecipeList = ({ recipeList, currentUser, favoriteRecipeIds, shouldFilter=f
       } else {
         setRecipes((prevRecipes) =>
           prevRecipes.map((recipe) =>
-            recipe.id === recipeId ? { ...recipe, isFavorited: response.data.favorited } : recipe
+            recipe.id === recipeId ? { ...recipe, is_favorited: response.data.favorited } : recipe
           )
         );
       }
@@ -28,7 +28,7 @@ const RecipeList = ({ recipeList, currentUser, favoriteRecipeIds, shouldFilter=f
     setRecipes((prevRecipes) =>
       prevRecipes.map((recipe) => ({
         ...recipe,
-        isFavorited: favoriteRecipeIds.includes(recipe.id),
+        is_favorited: favoriteRecipeIds.includes(recipe.id),
       }))
     );
   }, [favoriteRecipeIds]);
@@ -43,7 +43,7 @@ const RecipeList = ({ recipeList, currentUser, favoriteRecipeIds, shouldFilter=f
         <RecipeCard
           key={recipe.id}
           recipe={recipe}
-          isFavorited={recipe.isFavorited}
+          isFavorited={recipe.is_favorited}
           toggleFavorite={() => toggleFavorite(recipe.id)}
           currentUser={currentUser}
         />

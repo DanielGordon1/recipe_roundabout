@@ -14,7 +14,6 @@ const RecipeSearch = ({ recipes, currentUser, favoriteRecipeIds }) => {
     setError(null);
     try {
       const response = await api.get(`/recipes?query=${query}`);
-      console.log(response)
       setSearchResults(response.data);
     } catch (error) {
       setError('Error fetching recipes. Please try again.');

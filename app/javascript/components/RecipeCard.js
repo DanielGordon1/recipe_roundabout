@@ -1,7 +1,6 @@
 import React from 'react';
 
 const RecipeCard = ({ recipe, isFavorited, toggleFavorite, currentUser }) => {
-  console.log(recipe, isFavorited)
   return (
     <div key={recipe.id} className="recipe-card">
       <h3>{recipe.title}</h3>
