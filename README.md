@@ -63,6 +63,14 @@ TODO:
 - Host the app on fly.io - DONE
 - Containerize the app. - DONE
 - Fix Favorited on favorite page.
+- Fix Dockerfile to install Node and add to Path correctly.
+    - Currently have to run fly:
+    ```
+        fly ssh console
+        cd /rails
+        apt-get update
+        apt-get install -y nodejs
+    ```
 - Add ChatGPT recommendations for recipes based on favorite recipes and ingredients.
 - Add pagination on the results.
 

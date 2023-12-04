@@ -21,6 +21,15 @@
   font-size: 16px;
 }
 
+.recipe-card button {
+  padding: 8px 15px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
 .recipe-list {
   border-top: 1px solid #ccc;
   margin-top: 20px;
