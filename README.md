@@ -62,9 +62,10 @@ TODO:
 - Add a page to view liked recipes - DONE
 - Host the app on fly.io - DONE
 - Containerize the app. - DONE
-- Figure out volumes to be able to seed DB
-- Add pagination on the results.
+- Fix Favorited on favorite page.
 - Add ChatGPT recommendations for recipes based on favorite recipes and ingredients.
+- Add pagination on the results.
+
 - Make the search happen as you type
 
 ## Objective
@@ -86,7 +87,7 @@ We expect to use this prototype as a starting point to discuss current implenent
 
 #### Bonus points
 - [X] React
-- [ ] Application is hosted on fly.io
+- [X] Application is hosted on fly.io
 
 ## Data
 We provide two datasets to choose from:
