@@ -1,5 +1,6 @@
 class RecipeParser
   SUPPORTED_FORMATS = %w[json].freeze
+  BATCH_SIZE = ENV["BATCH_SIZE"] || 100
 
   def initialize(file_path)
     @file_path = file_path
@@ -26,7 +27,7 @@ class RecipeParser
     @authors = User.all.to_a
 
     # Batch Process data
-    batch_size = 100 # Adjust the batch size based on the dataset and system capacity
+    batch_size = BATCH_SIZE # Adjust the batch size based on the dataset and system capacity
 
     recipes.each_slice(batch_size).flat_map do |recipe_batch|
       recipe_ingredients = []
@@ -36,7 +37,8 @@ class RecipeParser
         build_recipe(recipe_data)
       end
       # Insert and upsert skip AR validations and callbacks.
-      # Luckily we have some DB level constraints.
+      # Which is not necesarrily what we want, but these methods do provide a straightforward way to batch insert / update records.
+      # Luckily we have some DB level constraints. :-)
       saved_recipes = Recipe.insert_all(recipe_batch)
       saved_recipe_ids = saved_recipes.pluck('id')
 
