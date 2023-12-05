@@ -1,83 +1,11 @@
-## Problem statement
+# Recipe Roundabout
 
+Please see [this notion](https://industrious-sale-74e.notion.site/Recipe-Roundabout-simple-tech-spec-3065f0946e72471ea7062532c7410fe3) for context on how I approached the below problem statement.
+
+## Problem statement
 > **It's dinner time ! Create an application that helps users find the most relevant recipes that they can prepare with the ingredients that they have at home**
 
-Functional Requirements:
-- User can create an account (✅)
-- User can login (✅)
-- User can search Recipes based on title. (✅)
-- User can search Recipes based on ingredients. (✅)
-- User can favorite(like) a Recipe (✅)
-- User can view al his / her favorite recipes (✅)
-- User can search for Recipes on the internet when the DB does not yield results
-    - Search for recommendations using ChatGPT
-
-Data 
-- Integrate the Recipe Scraper into our codebase and run it in a rake task every night that creates a JSON.
-- Load the JSON into the DB every night using a rake task. - Rake task done, cron not yet.
-
-UI
-- We first do a search and load from the DB.
-- Results are sorted based on their match. (Maybe use search scope in associated search for PG search https://github.com/Casecommons/pg_search)
-- If the user reaches the end of the result list, ask if the user wants to search the internet. (ChatGPT)
-- User can sort recipes based on their cooking time.
-
-Technical setup / Non-functional requirements
-- Rails application (Use a LW rails template)
-- Use react components in the Rails app to build the UI.
-- Hosting on fly.io.
-- Gems to use:
-    - PGanalayze (basic DB analysis / pg_query)
-    - Datadog (full scale monitoring)
-    - Rubocop (✅)
-    - Flipper (✅)
-    - React-rails (✅)
-    - Devise (✅)
-    - PG search (✅)
-    - Bullet (analyze slow queries / unused includes etc.) (✅)
-
-
-TODO:
-- Look into www.fly.io (sort of Heroku) - DONE
-- Finish functional requirements - DONE
-- DB design (use LW tool to create Normalized DB design.)(https://kitt.lewagon.com/db/116190) - DONE
-    - Contemplated using jsonb column for ingredients but as I expected queries on these columns are usually quite slow.
-    - Contemplated splitting the ingredient description into a quantity and a name, but out of scope for now.
-    - The cuisine property seems mostly empty in the JSON data. Adding it for completeness though (could/should be external table since IMO a dish can belong to multiple Cuisines')
-    - Contemplated having a n:n relationship betweem recipes and ingredients, but given the current scope this is unneccesary and makes the DB import complicated to be done efficiently.
-- Wrap head around non-functional requirements (Security/Scalibilty/Availability) Fly.io / Rails / Webpack / Asset Pipeline - DONE
-- Setup Rails App Backend - DONE
-- Add/Removed unused Gems - DONE
-- Create models / DB structure - DONE
-- Setup service to parse recipes and populate the DB and add tests. - DONE
-- Build Basic UI for logging in - DONE (LW template) - DONE
-- Build Recipe controller w/ filtered index method - DONE
-- Build Search Service - DONE
-- Use React inside the rails app for UI / FE. - DONE
-    - How to send the data from the controller to the view ? -> view_helper react_component
-- Add a Controller test - DONE
-- Add some FE magic. - DONE
-- Add option to like / save a recipe. - DONE
-- Clean up Navbar - DONE
-- Add a page to view liked recipes - DONE
-- Host the app on fly.io - DONE
-- Containerize the app. - DONE
-- Fix Favorited on favorite page.
-- Fix Dockerfile to install Node and add to Path correctly.
-    - Currently have to run fly:
-    ```
-        fly ssh console
-        cd /rails
-        apt-get update
-        apt-get install -y nodejs
-    ```
-- Add ChatGPT recommendations for recipes based on favorite recipes and ingredients.
-- Add pagination on the results.
-
-- Make the search happen as you type
-
 ## Objective
-
 Deliver an application prototype to answer the above problem statement.
 
 By prototype, we mean:
