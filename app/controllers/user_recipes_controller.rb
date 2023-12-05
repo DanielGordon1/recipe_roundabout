@@ -5,12 +5,11 @@ class UserRecipesController < ApplicationController
     @favorite_recipes = current_user.favorite_recipes.includes(:ingredients).as_json(include: :ingredients)
     @favorite_recipes.map! { |recipe| recipe['is_favorited'] = true; recipe }
     @favorite_recipe_ids = @current_user.favorite_recipes.map(&:id)
-    # ingredients = @favorite_recipes.ingredients.map(&:description) # Assuming the user has ingredients associated
+    # BELOW IS WIP
     # Get new recipe suggestions from ChatGPTService
-    # new_suggestions = ChatGPTService.get_new_recipe_suggestions(favorite_recipes, ingredients)
-
-    # Further processing or rendering based on new_suggestions
-    # For example:
-    # render json: { new_suggestions: new_suggestions }, status: :ok
+    # new_suggestions = ChatGPTService.get_new_recipe_suggestions(
+    #   recipe_titles: @favorite_recipes.map(&:title),
+    #   ingredients: @favorite_recipes.map(&:ingredients)
+    # )
   end
 end

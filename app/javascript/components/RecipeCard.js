@@ -13,7 +13,9 @@ const RecipeCard = ({ recipe, isFavorited, toggleFavorite, currentUser }) => {
         <p>Cooking Time: {recipe.cooking_time_minutes}</p>
         <p>Prep Time: {recipe.preparation_time_minutes}</p>
         <p>Rating: {recipe.rating}</p>
-        <p>Cuisine: {recipe.cuisine}</p>
+        {recipe.cuisine && 
+          <p>Cuisine: {recipe.cuisine}</p>
+        }
         <img src={recipe.image_url} alt={recipe.title} className="recipe-image" />
       </div>
       <div className="ingredients">
