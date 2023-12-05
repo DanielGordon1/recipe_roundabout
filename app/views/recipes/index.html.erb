@@ -1,3 +1,5 @@
 <h1>Search for recipes by title or ingredients!</h1>
 
-<%= react_component('RecipeSearch', { recipes: @recipes, currentUser: @current_user, favoriteRecipeIds: @favorite_recipe_ids}) %>
+<%# Create the urls using rails helpers, so we are sure that they stay correct %>
+<%# We create the url to favorite using a fake id of 0, which can never exist, so that it can be replaced with the actual id of the recipe in the React Component when making the request %>
+<%= react_component('RecipeSearch', { recipes: @recipes, currentUser: @current_user, favoriteRecipeIds: @favorite_recipe_ids, recipesPath: recipes_path, favoriteRecipePath: favorite_recipe_path(0)}) %>

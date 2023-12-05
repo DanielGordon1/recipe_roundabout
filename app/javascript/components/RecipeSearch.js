@@ -2,18 +2,21 @@ import React, { useState } from 'react';
 import RecipeList from './RecipeList';
 import api from '../packs/axios';
 
-const RecipeSearch = ({ recipes, currentUser, favoriteRecipeIds }) => {
+const RecipeSearch = ({ recipes, currentUser, favoriteRecipeIds, recipesPath, favoriteRecipePath}) => {
   const [query, setQuery] = useState('');
   const [searchResults, setSearchResults] = useState(recipes);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+
+ 
 
   const handleSearch = async (e) => {
     e.preventDefault();
     setIsLoading(true);
     setError(null);
     try {
-      const response = await api.get(`/recipes?query=${query}`);
+      console.log(recipesPath)
+      const response = await api.get(`${recipesPath}?query=${query}`);
       setSearchResults(response.data);
     } catch (error) {
       setError('Error fetching recipes. Please try again.');
@@ -41,6 +44,7 @@ const RecipeSearch = ({ recipes, currentUser, favoriteRecipeIds }) => {
         recipeList={searchResults}
         currentUser={currentUser}
         favoriteRecipeIds={favoriteRecipeIds}
+        favoriteRecipePath={favoriteRecipePath}
       />
     </div>
   );

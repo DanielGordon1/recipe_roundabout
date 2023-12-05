@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react';
 import RecipeCard from './RecipeCard';
 import api from '../packs/axios';
 
-const RecipeList = ({ recipeList, currentUser, favoriteRecipeIds, shouldFilter=false }) => {
+const RecipeList = ({ recipeList, currentUser, favoriteRecipeIds, shouldFilter=false, favoriteRecipePath}) => {
   const [recipes, setRecipes] = useState(recipeList);
-  console.log(recipeList, currentUser, favoriteRecipeIds, shouldFilter)
+  console.log(favoriteRecipePath)
   const toggleFavorite = async (recipeId) => {
     try {
-      const response = await api.post(`/recipes/${recipeId}/favorite`);
+      // replace the url that was created with a non existing record with the id of the recipe.
+      const response = await api.post(favoriteRecipePath.replace(0, recipeId));
       if (!response.data.favorited && shouldFilter) {
         setRecipes((prevRecipes) =>
           prevRecipes.filter((recipe) => recipe.id !== recipeId)
