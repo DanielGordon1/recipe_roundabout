@@ -2,6 +2,28 @@
 
 Please see [this notion](https://industrious-sale-74e.notion.site/Recipe-Roundabout-simple-tech-spec-3065f0946e72471ea7062532c7410fe3) for context on how I approached the below problem statement.
 
+## Instructions
+
+Welcome!
+
+Using this application we can search Recipes based on keywords and ingredient, and subsequently favorit them.
+
+After cloning the application and navigating to the folder run:
+
+```
+$ bundle install
+$ yarn install
+$ rails db:setup db:seed
+```
+
+In order to run a local dev server run the following:
+```
+$ rails s
+```
+
+The application is hosted and deployed on www.fly.io and can be found [here](https://recipe-roundabout.fly.dev/).
+
+
 ## Problem statement
 > **It's dinner time ! Create an application that helps users find the most relevant recipes that they can prepare with the ingredients that they have at home**
 
