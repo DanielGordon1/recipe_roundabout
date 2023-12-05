@@ -69,6 +69,7 @@ class RecipeParser
   def validate_extension(extension)
     return if SUPPORTED_FORMATS.include?(extension)
 
-    raise ArgumentError, "Unsupported file format: .#{extension}. Only #{SUPPORTED_FORMATS.join(', ')} files are supported."
+    raise ArgumentError,
+          "Unsupported file format: .#{extension}. Only #{SUPPORTED_FORMATS.join(', ')} files are supported."
   end
 end

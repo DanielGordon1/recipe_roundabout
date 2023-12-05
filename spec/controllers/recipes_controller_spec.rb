@@ -58,7 +58,7 @@ RSpec.describe RecipesController, type: :controller do
 
       it 'returns a success JSON response' do
         expect(response).to have_http_status(:success)
-        expect(JSON.parse(response.body)['favorited']).to eq(true)
+        expect(response.parsed_body['favorited']).to eq(true)
       end
     end
 
@@ -74,7 +74,7 @@ RSpec.describe RecipesController, type: :controller do
 
       it 'returns a success JSON response' do
         expect(response).to have_http_status(:success)
-        expect(JSON.parse(response.body)['favorited']).to eq(false)
+        expect(response.parsed_body['favorited']).to eq(false)
       end
     end
   end

@@ -83,7 +83,7 @@ group :test do
   gem "selenium-webdriver"
 end
 
-gem "dockerfile-rails", ">= 1.5", :group => :development
+gem "dockerfile-rails", ">= 1.5", group: :development
 
 gem "sentry-ruby", "~> 5.14"
 

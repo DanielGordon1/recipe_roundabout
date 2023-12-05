@@ -25,7 +25,7 @@ class RecipesController < ApplicationController
     render json: { favorited: current_user.favorite_recipes.include?(@recipe) }
   end
 
-  private 
+  private
 
   def set_favorite_on_recipes
     @favorite_recipe_ids = @current_user&.favorite_recipes&.pluck(:id) || []
