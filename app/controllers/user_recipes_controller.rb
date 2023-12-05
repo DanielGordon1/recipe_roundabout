@@ -7,7 +7,7 @@ class UserRecipesController < ApplicationController
     @favorite_recipe_ids = @current_user.favorite_recipes.map(&:id)
     # BELOW IS WIP
     # Get new recipe suggestions from ChatGPTService
-    # new_suggestions = ChatGPTService.get_new_recipe_suggestions(
+    # @chat_gpt_recipes = ChatGPTService.get_new_recipe_suggestions(
     #   recipe_titles: @favorite_recipes.map(&:title),
     #   ingredients: @favorite_recipes.map(&:ingredients)
     # )

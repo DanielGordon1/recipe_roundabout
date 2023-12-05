@@ -1,3 +1,3 @@
 <h1>Your favorite Recipes</h1>
 
-<%= react_component('RecipeList', { recipeList: @favorite_recipes, currentUser: @current_user, favoriteRecipeIds: @favorite_recipe_ids, shouldFilter: true })%>
+<%= react_component('RecipeList', { recipeList: @favorite_recipes, currentUser: @current_user, favoriteRecipeIds: @favorite_recipe_ids, shouldFilter: true, suggestedRecipes: @chat_gpt_recipes})%>
