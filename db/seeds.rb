@@ -12,4 +12,4 @@ Ingredient.delete_all
 UsersRecipe.delete_all
 Recipe.delete_all
 puts "Creating Recipes"
-RecipeParser.new(Rails.root.join('tmp/storage/data/recipes-en.json').to_s).parse_and_insert_efficiently
+RecipeParser.new(Rails.root.join('tmp/data/recipes-en.json').to_s).parse_and_insert_efficiently

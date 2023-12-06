@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe RecipesController, type: :controller do
-  before(:each) do
+  before do
     # Create test data using FactoryBot
     @recipe1 = FactoryBot.create(:recipe, :author, :category)
     @recipe2 = FactoryBot.create(:recipe, :author, :category)
@@ -30,14 +30,15 @@ RSpec.describe RecipesController, type: :controller do
 
     it 'returns valid data from the database in JSON format' do
       get :index, format: :json
+
       expect(response).to have_http_status(:ok)
       expect(response.content_type).to eq 'application/json; charset=utf-8'
 
       parsed_response = response.parsed_body
       expect(parsed_response.count).to eq(2)
 
-      expect(parsed_response[0]['title']).to eq(@recipe1.title)
-      expect(parsed_response[1]['title']).to eq(@recipe2.title)
+      expect(parsed_response[0]['title']).to eq(@recipe1.reload.title)
+      expect(parsed_response[1]['title']).to eq(@recipe2.reload.title)
     end
   end
 

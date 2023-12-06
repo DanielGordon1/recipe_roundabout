@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe RecipeParser do
   let(:invalid_json) { 'invalid json data' }
-  let(:valid_path) { Rails.root.join('tmp/storage/data/tests/recipes.json').to_s }
+  let(:valid_path) { Rails.root.join('tmp/data/tests/recipes.json').to_s }
 
   describe '#initialize' do
     context 'with unsupported file format' do
@@ -28,13 +28,13 @@ RSpec.describe RecipeParser do
     end
 
     context 'with valid JSON data' do
-      it 'inserts recipes and ingredients efficiently' do
-        expect do
-          RecipeParser.new(valid_path).parse_and_insert_efficiently
-        end.to change(Recipe, :count).by(2)
-        expect do
-          RecipeParser.new(valid_path).parse_and_insert_efficiently
-        end.to change(Ingredient, :count).by(6)
+      it 'inserts recipes efficiently without adding duplicates on a second run' do
+        expect { RecipeParser.new(valid_path).parse_and_insert_efficiently.to change(Recipe, :count).by(2) }
+        expect { RecipeParser.new(valid_path).parse_and_insert_efficiently.not_to change(Recipe, :count) }
+      end
+      it 'insert ingredients efficiently without adding duplicates on a second run' do
+        expect { RecipeParser.new(valid_path).parse_and_insert_efficiently }.to change(Ingredient, :count).by(6)
+        expect { RecipeParser.new(valid_path).parse_and_insert_efficiently }.not_to change(Ingredient, :count)
       end
 
       context 'with invalid JSON data' do

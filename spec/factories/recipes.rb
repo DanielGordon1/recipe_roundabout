@@ -1,7 +1,7 @@
 # spec/factories/recipes.rb
 FactoryBot.define do
   factory :recipe do
-    title { 'Sample Recipe' }
+    title { "Sample Recipe #{rand(1...1000)}" }
     cooking_time_minutes { rand(1...120) }
     preparation_time_minutes { rand(1...50) }
     rating { rand(1...5) }

@@ -39,9 +39,8 @@ class RecipeParser
       # Insert and upsert skip AR validations and callbacks.
       # Which is not necesarrily what we want, but these methods do provide a straightforward way to batch insert / update records.
       # Luckily we have some DB level constraints. :-)
-      saved_recipes = Recipe.upsert_all(recipe_batch, :index_recipes_on_title_and_image_url)
+      saved_recipes = Recipe.upsert_all(recipe_batch, unique_by: [:index_recipes_on_title_and_image_url])
       saved_recipe_ids = saved_recipes.pluck('id')
-
       # Associate ingredients with saved recipes
       ingredients = []
       recipe_ingredients.each_with_index do |recipe_ingredient_array, index|
