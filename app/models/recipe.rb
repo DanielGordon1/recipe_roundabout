@@ -10,6 +10,7 @@ class Recipe < ApplicationRecord
   has_many :favorite_recipes, through: :users_recipes, source: :user
 
   validates :title, :rating, presence: true
+  validates :title, uniqueness: { scope: :image_url }
 
   pg_search_scope :search_by_title_and_ingredients,
                   against: {
