@@ -36,7 +36,7 @@ FROM base as build
 
 # Install packages needed to build gems and node modules
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y build-essential git libpq-dev node-gyp pkg-config python-is-python3 nodejs
+    apt-get install --no-install-recommends -y build-essential git libpq-dev node-gyp pkg-config python-is-python3
 
 # Install yarn
 ARG YARN_VERSION=1.22.19
@@ -72,7 +72,9 @@ FROM base
 # Install packages needed for deployment
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y curl postgresql-client && \
-    rm -rf /var/lib/apt/lists /var/cache/apt/archives
+    rm -rf /var/lib/apt/lists /var/cache/apt/archives 
+
+RUN apt-get update && apt-get install -y nodejs
 
 # Copy built artifacts: gems, application
 COPY --from=build /usr/local/bundle /usr/local/bundle
