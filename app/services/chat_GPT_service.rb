@@ -17,6 +17,8 @@ class ChatGptService
   def new_recipe_suggestions
     response = call_completions_api
     parsed_response = JSON.parse(response.body)
+    return
+    # WIP
     parsed_response['new_recipe_suggestions'].map { |recipe_json| Recipe.new(title: recipe_json['title']) }
   rescue RestClient::ExceptionWithResponse => e
     Rails.logger.debug { "Error: #{e.response}" }
@@ -37,7 +39,7 @@ class ChatGptService
     {
       model: "gpt-3.5-turbo-instruct",
       prompt: "Can you supply me with a recommendation for a recipe based on the following recipe names:
-               #{@recipes.join(', ')}, and the following ingredients: #{@ingredients.join(', ')}?",
+               #{@recipe_titles.join(', ')}, and the following ingredients: #{@ingredients.join(', ')}?",
       temperature: TEMPERATURE,
       max_tokens: MAX_TOKENS
     }
