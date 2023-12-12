@@ -1,7 +1,6 @@
 require 'rest-client'
 require 'json'
 
-# WIP
 class ChatGptService
   CHATGPT_API_ENDPOINT = 'https://api.openai.com/v1/completions'.freeze
   API_KEY = ENV['CHAT_GPT'].freeze
