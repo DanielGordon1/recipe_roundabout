@@ -13,9 +13,7 @@ class Recipe < ApplicationRecord
   validates :title, uniqueness: { scope: :image_url }
 
   pg_search_scope :search_by_title_and_ingredients,
-                  against: {
-                    title: 'A'
-                  },
+                  against: :title,
                   associated_against: {
                     ingredients: [:description]
                   },
