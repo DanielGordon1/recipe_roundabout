@@ -1,4 +1,4 @@
-# Need this workaround to make sure deploying to fly does not break because it has no DB during the build process.
+# Need this workaround to make sure deploying to fly.io does not break due to it having no DB in the build process.
 begin
   ActiveRecord::Base.connection
 rescue ActiveRecord::ConnectionNotEstablished
