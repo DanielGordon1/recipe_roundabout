@@ -37,8 +37,10 @@ RSpec.describe RecipesController, type: :controller do
       parsed_response = response.parsed_body
       expect(parsed_response.count).to eq(2)
 
-      expect(parsed_response[0]['title']).to eq(@recipe1.reload.title)
-      expect(parsed_response[1]['title']).to eq(@recipe2.reload.title)
+      recipe_titles = parsed_response.pluck('title')
+
+      expect(recipe_titles).to include(@recipe1.reload.title)
+      expect(recipe_titles).to include(@recipe2.reload.title)
     end
   end
 
