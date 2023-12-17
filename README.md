@@ -63,3 +63,31 @@ wget https://pennylane-interviewing-assets-20220328.s3.eu-west-1.amazonaws.com/r
 - the database structure
 - the application, running on fly.io or on a personal server.
 - please submit links to the GitHub repo and the hosted application [via this form](https://forms.gle/siH7Rezuq2V1mUJGA) and if you're on Mac, make sure your browser has permission to share the screen
+
+
+
+
+
+
+#### TODO
+Points of interest:
+- Make sure the search results are more relevant based on keywords, less fuzzy.
+- Make sure the search is not too strict. 
+- Check use of indexes / preload data / cache data
+  
+Sofia comments / questions:
+  - How to make sure the application can handle more load? 
+
+
+Email questions / answers
+
+- First thing is I wondered is If you would have preferred me to use a self built SQL query instead of using PG search, and if so, do you think that during a potential next interview I should write a custom query or is using and tweaking PG search also acceptable.
+- 1. On our side we don't really care if it's pure SQL or if you're using pg_search, but we do expect you to be able to explain how it works and if there are any limitations to whichever solution you use.
+
+
+- Secondly my answer to your question regarding the method “set_favorite_on_recipes” might have been a bit defensive, instead of listening to your improvement I explained why I wrote it that way.  Do you think I should make use of a “join” statement instead to load the data from DB differently, or is the current implementation which updates the data in memory sufficient in a potential next round?
+- 2. I don't think you need to worry about it, being aware in this case is enough :) 
+
+
+- And last, do you think I should consider performance improvements for a potential next round? (Check use of indexes, measure query times, etc.)
+- 3. Performance improvements are always a plus and we'd be curious to see what you come up with and the ideas you explore. 

@@ -28,6 +28,7 @@ class RecipesController < ApplicationController
   private
 
   def set_favorite_on_recipes
+    # Use a join instead of setting this manually
     @favorite_recipe_ids = @current_user&.favorite_recipes&.pluck(:id) || []
     @recipes.map! do |recipe|
       recipe['is_favorited'] = true if @favorite_recipe_ids.include?(recipe['id'])
