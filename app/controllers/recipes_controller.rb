@@ -3,7 +3,8 @@ class RecipesController < ApplicationController
 
   def index
     if params[:query].present?
-      @recipes = Recipe.includes(:ingredients).search_by_title_and_ingredients(params[:query]).limit(50).as_json(include: :ingredients)
+      @recipes = RecipeSearchService.search(params[:query]).as_json(include: :ingredients)
+      # @recipes = Recipe.includes(:ingredients).search_by_title_and_ingredients(params[:query]).limit(50).as_json(include: :ingredients)
     else
       @recipes = Recipe.includes(:ingredients).order("RANDOM()").limit(10).as_json(include: :ingredients)
     end

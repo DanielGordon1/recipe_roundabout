@@ -6,7 +6,7 @@ Please see [this notion](https://industrious-sale-74e.notion.site/Recipe-Roundab
 
 Welcome!
 
-Using this application we can search Recipes based on keywords and ingredient, and subsequently favorit them.
+Using this application we can search Recipes based ingredients, and subsequently favorite them.
 
 After cloning the application and navigating to the folder run:
 
@@ -66,17 +66,23 @@ wget https://pennylane-interviewing-assets-20220328.s3.eu-west-1.amazonaws.com/r
 
 
 
-
-
-
 #### TODO
 Points of interest:
 - Make sure the search results are more relevant based on keywords, less fuzzy.
-- Make sure the search is not too strict. 
+  - More relevant - added weight to title - why does pita bread yield Peppy's Pita Bread as a first result, and not Pita Bread, which is a direct hit.
+
+  - Less fuzzy - added weight to title
+- Make sure the search is not too strict.
+  - Not sure about this; should adding more terms yield more results?
+    - flour salt buttermilk pickle juice lard bacon eggs
 - Check use of indexes / preload data / cache data
   
 Sofia comments / questions:
-  - How to make sure the application can handle more load? 
+  - How to make sure the application can handle more load?
+  Pagination
+  Caching (redis)
+  ElasticSearch (or even algolia)
+  Query Tuning
 
 
 Email questions / answers
@@ -84,10 +90,36 @@ Email questions / answers
 - First thing is I wondered is If you would have preferred me to use a self built SQL query instead of using PG search, and if so, do you think that during a potential next interview I should write a custom query or is using and tweaking PG search also acceptable.
 - 1. On our side we don't really care if it's pure SQL or if you're using pg_search, but we do expect you to be able to explain how it works and if there are any limitations to whichever solution you use.
 
+Rebuilt using pure SQL.
+- Benefits: 
+  Full customizability and full control.
+- Drawbacks: 
+  First iteration seems to be less performant than pgsearch. 240ms vs 408ms.
+  More (complicated) code means more maintenance and tech debt.
+
+
+
+
+
+
 
 - Secondly my answer to your question regarding the method “set_favorite_on_recipes” might have been a bit defensive, instead of listening to your improvement I explained why I wrote it that way.  Do you think I should make use of a “join” statement instead to load the data from DB differently, or is the current implementation which updates the data in memory sufficient in a potential next round?
 - 2. I don't think you need to worry about it, being aware in this case is enough :) 
 
 
 - And last, do you think I should consider performance improvements for a potential next round? (Check use of indexes, measure query times, etc.)
-- 3. Performance improvements are always a plus and we'd be curious to see what you come up with and the ideas you explore. 
+- 3. Performance improvements are always a plus and we'd be curious to see what you come up with and the ideas you explore.
+- Use PGanalyze / Datadog to check query times, query performance and tweak queries accordingly.
+- How to split up the DB by using horizontal sharding?
+- Main write DB and multiple Slave Read DB
+- Cache the query words under a key in redis, with the ids of the recipes as the value.
+- Cache the objects in Redis
+- Need to consider Cache invalidation, how and when to invalidate keys / objects.
+- Connection pooling, but only neccesarry to improve performance when we get close a max # of connections hitting the DB. (Is this done efficiently )
+- Enhance observability through Datadog or similar service. Run load tests using locust and see where the thresholds are. Install alarms at 50 and 75% of these thresholds.
+
+
+
+
+<!-- Inou -->
+- Ingredient 
