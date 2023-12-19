@@ -113,7 +113,7 @@ CREATE TABLE public.ingredients (
     recipe_id bigint NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    description_searchable tsvector GENERATED ALWAYS AS (setweight(to_tsvector('english'::regconfig, (COALESCE(description, ''::character varying))::text), 'B'::"char")) STORED
+    description_searchable tsvector GENERATED ALWAYS AS (setweight(to_tsvector('simple'::regconfig, (COALESCE(description, ''::character varying))::text), 'B'::"char")) STORED
 );
 
 
@@ -183,7 +183,7 @@ CREATE TABLE public.recipes (
     recipe_category_id bigint,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    title_searchable tsvector GENERATED ALWAYS AS (setweight(to_tsvector('english'::regconfig, (COALESCE(title, ''::character varying))::text), 'A'::"char")) STORED
+    title_searchable tsvector GENERATED ALWAYS AS (setweight(to_tsvector('simple'::regconfig, (COALESCE(title, ''::character varying))::text), 'A'::"char")) STORED
 );
 
 

@@ -28,8 +28,11 @@ class RecipesController < ApplicationController
   private
 
   def set_favorite_on_recipes
+    return if current_user.nil?
+
     # Could use a join instead of setting this in memory.
-    @favorite_recipe_ids = @current_user&.favorite_recipes&.pluck(:id) || []
+    # Alternatively use a hash lookup which is faster.
+    @favorite_recipe_ids = @current_user.favorite_recipes&.pluck(:id) || []
     @recipes.map! do |recipe|
       recipe['is_favorited'] = true if @favorite_recipe_ids.include?(recipe['id'])
       recipe

@@ -3,12 +3,12 @@ class AddTextSearchColumnToRecipesAndIngredients < ActiveRecord::Migration[7.0]
     execute <<-SQL
       ALTER TABLE recipes
       ADD COLUMN title_searchable tsvector GENERATED ALWAYS AS (
-        setweight(to_tsvector('english', coalesce(title, '')), 'A')
+        setweight(to_tsvector('simple', coalesce(title, '')), 'A')
       ) STORED;
 
       ALTER TABLE ingredients
       ADD COLUMN description_searchable tsvector GENERATED ALWAYS AS (
-        setweight(to_tsvector('english', coalesce(description, '')), 'B')
+        setweight(to_tsvector('simple', coalesce(description, '')), 'B')
       ) STORED;
     SQL
   end
