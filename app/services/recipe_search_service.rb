@@ -63,6 +63,7 @@ class RecipeSearchService
     # ~ 120ms
     words = query.split
     first = words.shift
+    # This is bad, because SQL injection. I know ^_^.
     sql = "recipes.title ILIKE '%#{first}%' OR ingredients.description ILIKE '%#{first}%' \n"
     words.each { |word| sql << "OR recipes.title ILIKE '%#{word}%' OR ingredients.description ILIKE '%#{word}%' \n" }
 
