@@ -8,10 +8,11 @@ class RecipeSearchService
       SELECT
         recipes.*,
         ts_rank(
-          setweight(
-            to_tsvector('simple', coalesce(recipes.title, '')), 'A') ||
-            to_tsvector('simple', coalesce(string_agg(ingredients.description, ' '), 'B')),
-            plainto_tsquery('simple', #{sanitized_query})
+          (
+          recipes.title_searchable ||
+          setweight(to_tsvector('simple', coalesce(string_agg(ingredients.description, ' '), '')), 'B')
+        ),
+        plainto_tsquery('simple', #{sanitized_query})
         ) AS rank
       FROM
         recipes
@@ -20,12 +21,13 @@ class RecipeSearchService
       GROUP BY
         recipes.id
       HAVING
-        ts_rank(
-          setweight(
-            to_tsvector('simple', coalesce(recipes.title, '')), 'A') ||
-            to_tsvector('simple', coalesce(string_agg(ingredients.description, ' '), 'B')),
-            plainto_tsquery('simple', #{sanitized_query})
-        ) > #{MIN_SCORE_RANK}
+      ts_rank(
+        (
+          recipes.title_searchable ||
+          setweight(to_tsvector('simple', coalesce(string_agg(ingredients.description, ' '), '')), 'B')
+        ),
+        plainto_tsquery('simple', #{sanitized_query})
+      ) > #{MIN_SCORE_RANK}
       ORDER BY
         rank DESC,
         recipes.title ILIKE #{sanitized_query} DESC,
@@ -33,6 +35,7 @@ class RecipeSearchService
       LIMIT #{LIMIT}
     SQL
   end
+
 
   def self.search(query)
     sql = build_sql(query)
