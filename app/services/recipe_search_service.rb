@@ -11,17 +11,19 @@ class RecipeSearchService
       SELECT
         recipes.*,
         ts_rank(
+          -- D, C, B , A --
+          ARRAY[0.1, 0.2, 0.8, 1.0],
           (
-          recipes.title_searchable ||
-          -- We use the 'simple' algo because we don't need language-specific features like stemming and stop words.
-          setweight(to_tsvector('simple', coalesce(string_agg(ingredients.description, ' '), '')), 'B')
-          -- ingredients.description_searchable does not work.
-          -- Its an aggregation and can only be aggregated within this context.
-          -- to make this work we could/should add ingredients as a text column on the recipe model,
-          -- that way we dont have to do an aggregation -->
-        ),
-        -- why use of simple here? and what does plainto_tsquery return/ create?
-        plainto_tsquery('simple', #{sanitized_query})
+            recipes.title_searchable ||
+            -- We use the 'simple' algo because we don't need language-specific features like stemming and stop words.
+            setweight(to_tsvector('simple', coalesce(string_agg(ingredients.description, ' '), '')), 'B')
+            -- ingredients.description_searchable does not work.
+            -- Its an aggregation and can only be aggregated within this context.
+            -- to make this work we could/should add ingredients as a text column on the recipe model,
+            -- that way we dont have to do an aggregation -->
+          ),
+          -- why use of simple here? and what does plainto_tsquery return/ create?
+          plainto_tsquery('simple', #{sanitized_query})
         ) AS rank
       FROM
         recipes
