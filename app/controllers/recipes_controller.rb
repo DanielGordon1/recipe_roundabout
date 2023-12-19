@@ -36,7 +36,7 @@ class RecipesController < ApplicationController
     return if favorite_recipe_hash.empty?
 
     @recipes.map! do |recipe|
-      recipe['is_favorited'] = true if @favorite_recipe_hash.key?(recipe['id'])
+      recipe['is_favorited'] = true if favorite_recipe_hash.key?(recipe['id'])
       recipe
     end
   end
