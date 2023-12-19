@@ -10,8 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_06_081713) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_19_131754) do
   # These are extensions that must be enabled in order to support this database
+  enable_extension "btree_gin"
   enable_extension "plpgsql"
 
   create_table "flipper_features", force: :cascade do |t|
@@ -35,6 +36,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_06_081713) do
     t.bigint "recipe_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["description"], name: "index_ingredients_on_description", using: :gin
     t.index ["recipe_id", "description"], name: "index_ingredients_on_recipe_id_and_description", unique: true
     t.index ["recipe_id"], name: "index_ingredients_on_recipe_id"
   end
@@ -58,6 +60,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_06_081713) do
     t.datetime "updated_at", null: false
     t.index ["recipe_category_id"], name: "index_recipes_on_recipe_category_id"
     t.index ["title", "image_url"], name: "index_recipes_on_title_and_image_url", unique: true
+    t.index ["title"], name: "index_recipes_on_title", using: :gin
     t.index ["user_id"], name: "index_recipes_on_user_id"
   end
 

@@ -39,6 +39,7 @@ class RecipeSearchService
     # We create a subquery by wrapping the actual sql query in an select query.
     # This way we return an ActiveRecord Relation object so we can chain AR methods to the result.
     results = Recipe.includes(:ingredients).select('*').from("(#{sql}) AS recipes")
+
     results
   end
 
