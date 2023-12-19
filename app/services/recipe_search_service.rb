@@ -4,7 +4,7 @@ class RecipeSearchService
 
   # rubocop:disable Metrics/MethodLength
   def self.build_sql(query)
-    # ~220ms
+    # ~220ms - meh
 
     sanitized_query = ActiveRecord::Base.connection.quote(query)
     sql = <<~SQL
@@ -26,7 +26,7 @@ class RecipeSearchService
       FROM
         recipes
       -- We use an inner join to only display recipes that have ingredients attached
-      INNER JOIN
+      LEFT JOIN
         ingredients ON ingredients.recipe_id = recipes.id
       GROUP BY
         recipes.id
@@ -47,8 +47,17 @@ class RecipeSearchService
   end
   # rubocop:enable Metrics/MethodLength
 
+  def self.search(query)
+    sql = build_sql(query)
+    # We create a subquery by wrapping the actual sql query in an select query.
+    # This way we return an ActiveRecord Relation object so we can chain AR methods to the result.
+    results = Recipe.includes(:ingredients).select('*').from("(#{sql}) AS recipes")
+
+    results
+  end
+
   def self.basic_search(query)
-    # ~ 600ms
+    # ~ 600ms - lol
     sql = <<~SQL
       recipes.title @@ :query OR
       ingredients.description @@ :query
@@ -62,7 +71,7 @@ class RecipeSearchService
   end
 
   def self.super_basic_search(query)
-    # ~ 120ms
+    # ~ 120ms - quite fast
     words = query.split
     first = words.shift
     # This is bad, because SQL injection. I know ^_^.
@@ -74,15 +83,6 @@ class RecipeSearchService
           .order("recipes.id ASC")
           .limit(LIMIT)
           .distinct
-  end
-
-  def self.search(query)
-    sql = build_sql(query)
-    # We create a subquery by wrapping the actual sql query in an select query.
-    # This way we return an ActiveRecord Relation object so we can chain AR methods to the result.
-    results = Recipe.includes(:ingredients).select('*').from("(#{sql}) AS recipes")
-
-    results
   end
 
   def self.test_search(query)

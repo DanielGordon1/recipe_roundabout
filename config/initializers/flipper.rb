@@ -4,6 +4,6 @@
 Rails.application.config.after_initialize do
   # Only load this config when a server is started or when the rails console is started.
   if defined?(::Rails::Server) || defined?(::Rails::Console)
-    Flipper.enable_percentage_of_actors(:chat_gpt_recommendations, ENV['GPT_RECIPE_PERCENTAGE'])
+    Flipper.enable_percentage_of_actors(:chat_gpt_recommendations, ENV.fetch('GPT_RECIPE_PERCENTAGE', 0))
   end
 end

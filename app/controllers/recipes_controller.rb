@@ -28,16 +28,16 @@ class RecipesController < ApplicationController
   private
 
   def set_favorite_on_recipes
-    return if current_user.nil?
-
     # Could use a join instead of setting this in memory.
-    # Alternatively use a hash lookup which is faster.
-    hash = {}
-    @current_user.favorite_recipes&.map { |recipe| hash[recipe.id] = recipe }
-    @favorite_recipe_ids = hash.keys
-
+    # Alternatively use a hash lookup which is faster than an array includes
+    favorite_recipe_hash = {}
+    @current_user&.favorite_recipes&.map { |recipe| favorite_recipe_hash[recipe.id] = recipe }
+    @favorite_recipe_ids = favorite_recipe_hash.keys
+    return if favorite_recipe_hash.empty?
+    debugger
+    
     @recipes.map! do |recipe|
-      recipe['is_favorited'] = true if @favorite_recipe_ids.key?(recipe['id'])
+      recipe['is_favorited'] = true if @favorite_recipe_hash.key?(recipe['id'])
       recipe
     end
   end
