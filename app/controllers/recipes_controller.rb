@@ -32,9 +32,12 @@ class RecipesController < ApplicationController
 
     # Could use a join instead of setting this in memory.
     # Alternatively use a hash lookup which is faster.
-    @favorite_recipe_ids = @current_user.favorite_recipes&.pluck(:id) || []
+    hash = {}
+    @current_user.favorite_recipes&.map { |recipe| hash[recipe.id] = recipe }
+    @favorite_recipe_ids = hash.keys
+
     @recipes.map! do |recipe|
-      recipe['is_favorited'] = true if @favorite_recipe_ids.include?(recipe['id'])
+      recipe['is_favorited'] = true if @favorite_recipe_ids.key?(recipe['id'])
       recipe
     end
   end

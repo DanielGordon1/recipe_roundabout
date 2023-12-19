@@ -15,6 +15,8 @@ class RecipeSearchService
           recipes.title_searchable ||
           -- We use the 'simple' algo because we don't need language-specific features like stemming and stop words.
           setweight(to_tsvector('simple', coalesce(string_agg(ingredients.description, ' '), '')), 'B')
+          -- ingredients.description_searchable does not work.
+          -- Its an aggregation and can only be aggregated within this context.
           -- to make this work we could/should add ingredients as a text column on the recipe model,
           -- that way we dont have to do an aggregation -->
         ),

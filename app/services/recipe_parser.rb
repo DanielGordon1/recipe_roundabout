@@ -20,6 +20,7 @@ class RecipeParser
     File.extname(file_path).delete('.')
   end
 
+  # rubocop:disable Metrics/MethodLength
   def parse_and_insert_efficiently
     recipes = JSON.parse(@json_data)
     # Preload data
@@ -51,6 +52,7 @@ class RecipeParser
       Ingredient.upsert_all(ingredients, unique_by: [:index_ingredients_on_recipe_id_and_description])
     end
   end
+  # rubocop:enable Metrics/MethodLength
 
   private
 
