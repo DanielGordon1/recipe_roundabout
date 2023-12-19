@@ -11,17 +11,4 @@ class Recipe < ApplicationRecord
 
   validates :title, :rating, presence: true
   validates :title, uniqueness: { scope: :image_url }
-
-  # Research weighting 
-  # query: Pita Bread / Pita Bread Steak
-  pg_search_scope :search_by_title_and_ingredients,
-                  against: { title: "A" },
-                  associated_against: {
-                    ingredients: {
-                      description: 'B'
-                    }
-                  },
-                  using: {
-                    tsearch: { prefix: true }
-                  }
 end

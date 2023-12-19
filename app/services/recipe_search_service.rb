@@ -27,8 +27,8 @@ class RecipeSearchService
             plainto_tsquery('simple', #{sanitized_query})
         ) > #{MIN_SCORE_RANK}
       ORDER BY
-        recipes.title ILIKE #{sanitized_query} DESC,
         rank DESC,
+        recipes.title ILIKE #{sanitized_query} DESC,
         recipes.id ASC
       LIMIT #{LIMIT}
     SQL
