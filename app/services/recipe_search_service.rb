@@ -28,12 +28,13 @@ class RecipeSearchService
       FROM
         recipes
       -- We use an inner join to only display recipes that have ingredients attached
-      LEFT JOIN
+      INNER JOIN
         ingredients ON ingredients.recipe_id = recipes.id
       GROUP BY
         recipes.id
       HAVING
       ts_rank(
+        ARRAY[0.1, 0.2, 0.8, 1.0],
         (
           recipes.title_searchable ||
           -- is this aggregation a performance hit? -->
