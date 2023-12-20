@@ -6,10 +6,10 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 puts "Destroying all data..."
+UsersRecipe.delete_all
 User.delete_all
 RecipeCategory.delete_all
 Ingredient.delete_all
-UsersRecipe.delete_all
 Recipe.delete_all
 puts "Creating Recipes"
 RecipeParser.new(Rails.root.join('tmp/data/recipes-en.json').to_s).parse_and_insert_efficiently

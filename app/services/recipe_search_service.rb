@@ -24,6 +24,7 @@ class RecipeSearchService
           ),
           -- why use of simple here? and what does plainto_tsquery return/ create?
           plainto_tsquery('simple', #{sanitized_query})
+          -- We can add a normalization parameter here that adjusts rank for document length.
         ) AS rank
       FROM
         recipes
@@ -37,7 +38,7 @@ class RecipeSearchService
         ARRAY[0.1, 0.2, 0.8, 1.0],
         (
           recipes.title_searchable ||
-          -- is this aggregation a performance hit? -->
+          -- Is this aggregation a performance hit? Need to research -->
           setweight(to_tsvector('simple', coalesce(string_agg(ingredients.description, ' '), '')), 'B')
         ),
         plainto_tsquery('simple', #{sanitized_query})
